@@ -22,5 +22,31 @@ program
     })
 });
 
+program
+  .command('add')
+  .description('Add the todo in list')
+  .argument('<Todo_list>', 'add the todo')
+  .action((todo) => {
+    fs.readFile('todo.json', 'utf-8', (err, data) => {
+      if(err){
+        console.log(err);
+      } else {
+        let jsondata = JSON.parse(data);
+        let addedData = {
+          "todo" : todo
+        }
+        jsondata.push(addedData);
+        var newData = JSON.stringify(jsondata);
+        fs.writeFile('todo.json', newData, err => {
+          if(err){
+            console.log(err);
+          } else {
+            console.log("New todo added");
+          }
+        })
+      }
+    })
+});
+
 program.parse();
  
