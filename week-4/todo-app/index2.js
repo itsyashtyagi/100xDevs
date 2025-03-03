@@ -20,7 +20,7 @@ app.use(isOldEnoughMiddleware); // for the entire app ( Order matters in this )
 app.get("/ride2", isOldEnoughMiddleware, function (req, res) {
     res.status(201).json({
         msg: "You have booked the ride 2 successfully"
-    });
+    }); 
 })
 
 app.get("/ride1", isOldEnoughMiddleware, function (req, res) {
